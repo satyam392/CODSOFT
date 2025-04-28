@@ -1,0 +1,28 @@
+def expert_system():
+    print("Welcome to the Hospital Expert System!")
+    print("Please answer the following questions to help us diagnose your condition.")
+    
+    fever = input("Do you have a fever? (yes/no): ").lower()
+    cough = input("Do you have a cough? (yes/no): ").lower()
+    shortness_of_breath = input("Do you have shortness of breath? (yes/no): ").lower()
+    body_aches = input("Do you have body aches? (yes/no): ").lower()
+    fatigue = input("Do you feel fatigued or tired? (yes/no): ").lower()
+    headache = input("Do you have a headache? (yes/no): ").lower()
+    sore_throat = input("Do you have a sore throat? (yes/no): ").lower()
+
+    if fever == 'yes' and cough == 'yes' and shortness_of_breath == 'yes':
+        print("Based on your symptoms, you may have **COVID-19**. Please consult a doctor immediately.")
+    elif fever == 'yes' and body_aches == 'yes' and fatigue == 'yes':
+        print("Based on your symptoms, you may have **Flu** (Influenza). Rest, hydrate, and consult a doctor if symptoms worsen.")
+    elif cough == 'yes' and sore_throat == 'yes' and headache == 'yes':
+        print("Based on your symptoms, you may have **Common Cold**. Drink warm fluids, and rest.")
+    elif fever == 'yes' and body_aches == 'yes' and sore_throat == 'yes':
+        print("Based on your symptoms, you may have **Strep Throat**. Please consult a doctor for a proper diagnosis and treatment.")
+    elif fatigue == 'yes' and body_aches == 'yes' and headache == 'yes':
+        print("Based on your symptoms, you may have **Chronic Fatigue Syndrome**. Consult a doctor for further evaluation.")
+    else:
+        print("You don't seem to have any major symptoms at the moment. However, if you feel unwell, please consult a healthcare professional.")
+    
+    print("This is a basic diagnosis. Please consult a doctor for a more accurate and professional diagnosis.")
+
+expert_system()

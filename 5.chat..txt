@@ -1,0 +1,19 @@
+def chatbot():
+    print("Hello! Welcome to our store. How can I assist you today?")
+
+    while True:
+        user_input = input("You: ").lower()
+
+        if "hours" in user_input:
+            print("Chatbot: Our store is open from 9 AM to 9 PM every day.")
+        elif "product" in user_input or "buy" in user_input:
+            print("Chatbot: We offer electronics, clothing, and accessories. What would you like to buy?")
+        elif "order" in user_input:
+            print("Chatbot: Please provide your order number, and I can check the status.")
+        elif "bye" in user_input or "exit" in user_input:
+            print("Chatbot: Goodbye! Have a nice day!")
+            break
+        else:
+            print("Chatbot: I'm sorry, I didn't understand that. Can you ask something else?")
+
+chatbot()
