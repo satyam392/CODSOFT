@@ -1,0 +1,23 @@
+public class CCLab {
+    
+    public static void perinfo() {
+        
+        system.debug('***************');
+        system.debug('Student Details');
+        system.debug('***************');
+        
+        
+        String name = 'Rohit Sharma'; // Updated name
+        String branch = 'Computer Engineering Department';
+        String year = '3rd Year';
+        String division = 'A';
+        Integer rollNo = 15;
+
+       
+        system.debug('Name: ' + name);
+        system.debug('Branch: ' + branch);
+        system.debug('Class: ' + year);
+        system.debug('Division: ' + division);
+        system.debug('Roll No: ' + rollNo);
+    }
+}

@@ -1,0 +1,23 @@
+public class EmployeeInfo {
+    
+    public static void empInfo() {
+        
+        system.debug('***************');
+        system.debug('Employee Details');
+        system.debug('***************');
+        
+        
+        String empName = 'Rohit Sharma'; // Employee Name
+        String department = 'Software Development';
+        String designation = 'Senior Developer';
+        String division = 'IT Division';
+        Integer empId = 101;
+
+        
+        system.debug('Name: ' + empName);
+        system.debug('Department: ' + department);
+        system.debug('Designation: ' + designation);
+        system.debug('Division: ' + division);
+        system.debug('Employee ID: ' + empId);
+    }
+}
