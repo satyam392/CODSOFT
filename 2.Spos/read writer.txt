@@ -1,0 +1,92 @@
+public class ReadWriter {
+    static int mutex = 1;
+    static int database = 1;
+    static int Read_Count = 0;
+
+    static void Reader() throws Exception {
+        while (true) {
+            mutex = wait(mutex);
+            Read_Count += 1;
+            if (Read_Count == 1) {
+                database = wait(database);
+            }
+            mutex = signal(mutex);
+
+            System.out.println(Read_Count + " user(s) reading data.....");
+            
+            mutex = wait(mutex);
+            Read_Count -= 1;
+            if (Read_Count == 0) {
+                database = signal(database);
+            }
+            mutex = signal(mutex);
+
+            System.out.println("Reading finished..!!!");
+            break;
+        }
+    }
+
+    static int wait(int resource) {
+        while (resource <= 0) {}
+        resource -= 1;
+        return resource;
+    }
+
+    static int signal(int resource) {
+        resource += 1;
+        return resource;
+    }
+
+    static void Writer() throws Exception {
+        while (true) {
+            database = wait(database);
+            System.out.println("Writing on database...");
+            database = signal(database);
+            System.out.println("Writing finished!!!");
+            break;
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        Thread writerThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Writer();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Thread readerThread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Reader();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Thread readerThread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Reader();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        writerThread.start();
+        readerThread1.start();
+        readerThread2.start();
+
+        writerThread.join();
+        readerThread1.join();
+        readerThread2.join();
+    }
+}
