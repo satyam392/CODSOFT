@@ -1,0 +1,27 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = sns.load_dataset('titanic')
+
+print(df.head())
+print(df.info())
+
+sns.countplot(x='survived', data=df)
+plt.title('Survival Count')
+plt.show()
+
+sns.countplot(x='sex', hue='survived', data=df)
+plt.title('Survival by Gender')
+plt.show()
+
+sns.countplot(x='class', hue='survived', data=df)
+plt.title('Survival by Passenger Class')
+plt.show()
+
+sns.boxplot(x='survived', y='age', data=df)
+plt.title('Age Distribution by Survival')
+plt.show()
+
+sns.heatmap(df.corr(numeric_only=True), annot=True, cmap='coolwarm')
+plt.title('Correlation Heatmap')
+plt.show()

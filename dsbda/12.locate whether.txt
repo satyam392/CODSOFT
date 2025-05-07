@@ -1,0 +1,42 @@
+# Read the file and calculate averages for temperature, dew point, and wind speed
+def calculate_weather_averages(file_path):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+    
+    # Initialize variables to store sums
+    total_temperature = 0
+    total_dew_point = 0
+    total_wind_speed = 0
+    count = 0
+
+    # Skip the header (first line)
+    for line in lines[1:]:
+        data = line.split()
+        # Extract values from each row (assumes well-formed data)
+        temperature = float(data[1])
+        dew_point = float(data[2])
+        wind_speed = float(data[3])
+
+        # Add to totals
+        total_temperature += temperature
+        total_dew_point += dew_point
+        total_wind_speed += wind_speed
+        count += 1
+    
+    # Calculate averages
+    average_temperature = total_temperature / count
+    average_dew_point = total_dew_point / count
+    average_wind_speed = total_wind_speed / count
+    
+    return average_temperature, average_dew_point, average_wind_speed
+
+# Define the file path
+file_path = 'sample_weather.txt'
+
+# Calculate averages
+average_temperature, average_dew_point, average_wind_speed = calculate_weather_averages(file_path)
+
+# Print results
+print(f"Average Temperature: {average_temperature:.2f} °C")
+print(f"Average Dew Point: {average_dew_point:.2f} °C")
+print(f"Average Wind Speed: {average_wind_speed:.2f} km/h")

@@ -1,0 +1,25 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = sns.load_dataset('iris')
+
+print("Dataset Head:\n", df.head())
+print("\nDataset Info:\n")
+print(df.info())
+
+print("\nFeature Types:")
+for col in df.columns:
+    dtype = df[col].dtype
+    ftype = 'numeric' if pd.api.types.is_numeric_dtype(df[col]) else 'nominal'
+    print(f"{col}: {ftype}")
+
+df.hist(figsize=(10, 8))
+plt.suptitle('Histogram of Iris Features')
+plt.tight_layout()
+plt.show()
+
+df.plot(kind='box', subplots=True, layout=(2,2), figsize=(10, 8), sharex=False, sharey=False)
+plt.suptitle('Boxplots of Iris Features')
+plt.tight_layout()
+plt.show()

@@ -1,0 +1,15 @@
+import pandas as pd
+
+
+data = {
+    'age_group': ['18-25', '18-25', '26-35', '26-35', '36-45', '36-45', '46-60', '46-60'],
+    'income': [25000, 27000, 35000, 36000, 45000, 47000, 52000, 55000]
+}
+
+df = pd.DataFrame(data)
+
+
+summary_stats = df.groupby('age_group')['income'].describe()
+
+print("🔹 Summary Statistics for Income by Age Group:")
+print(summary_stats)

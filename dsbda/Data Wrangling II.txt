@@ -1,0 +1,40 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from scipy import stats
+
+data = {
+    'student_id': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'name': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
+    'math_score': [85, 90, 78, 92, 65, 89, None, 150, 70, 72],
+    'science_score': [88, 79, 95, 85, 67, None, 80, 82, 75, 70],
+    'attendance_percentage': [90, 85, 95, 80, 75, 100, 85, 70, 65, 105],
+}
+
+df = pd.DataFrame(data)
+
+print("\n🔹 Original Dataset:")
+print(df)
+
+print("\n🔹 Missing Values:")
+print(df.isnull().sum())
+
+df['math_score'].fillna(df['math_score'].mean(), inplace=True)
+df['science_score'].fillna(df['science_score'].mean(), inplace=True)
+df['attendance_percentage'] = df['attendance_percentage'].apply(lambda x: 100 if x > 100 else x)
+
+z_scores = np.abs(stats.zscore(df[['math_score', 'science_score', 'attendance_percentage']]))
+print("\n🔹 Z-scores for outliers detection:")
+print(z_scores)
+
+outliers = (z_scores > 3)
+print("\n🔹 Outliers Detected:")
+print(outliers)
+
+df.loc[df['math_score'] > 100, 'math_score'] = df['math_score'].mean()
+
+df['log_attendance'] = np.log1p(df['attendance_percentage'])
+
+print("\n🔹 Cleaned & Transformed Dataset:")
+print(df)
